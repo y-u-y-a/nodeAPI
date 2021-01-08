@@ -1,0 +1,10 @@
+FROM node:lts-alpine
+
+WORKDIR /code
+COPY ./code/package*.json ./
+
+RUN npm install -g typescript ts-node typeorm
+RUN npm install
+
+# ENTRYPOINT: 必ず実行(上書き不可)
+# CMD [ "npm", "run", "dev" ]

@@ -1,0 +1,43 @@
+version: '3'
+services:
+  mysql:
+    container_name: api_mysql
+    build:
+      context: ./
+      dockerfile: build/mysql/Dockerfile.dev
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./build/mysql/init:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_DATABASE: nodeAPI
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      MYSQL_ROOT_PASSWORD: test
+      TZ: Asia/Tokyo
+    ports:
+      - 4306:3306
+    networks:
+      - default
+
+  api:
+    container_name: node_api
+    build:
+      context: ./
+      dockerfile: build/api/Dockerfile.dev
+    volumes:
+      - ./code:/code
+      - /code/node_modules # マウントで消さないため
+    ports:
+      - 8000:8000
+    working_dir: /code
+    command: yarn dev
+    depends_on:
+      - mysql
+    networks:
+      - default
+
+networks:
+  default:
+    external: false
+volumes:
+  mysql-data:
