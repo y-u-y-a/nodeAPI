@@ -5,6 +5,7 @@ import DB from '@/config/database'
 import Routes from '@/config/routes'
 import Errors from '@/controllers/ErrorsController'
 
+// env
 const environment = process.env.NODE_ENV || 'dev'
 const crossEnv = require(`../env.${environment}.js`)
 
@@ -15,7 +16,7 @@ app.use(json())
 app.use(Errors.serverError)
 DB.connect()
 
-// set routes
+// routes
 app.use('/', Routes)
 
 // start
