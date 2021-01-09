@@ -1,10 +1,8 @@
 {
   "name": "node-api",
   "version": "1.0.0",
-  "description": "api by node.js",
   "main": "app.js",
-  "author": "yuya",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV='dev' nodemon -L",
     "prod": "cross-env NODE_ENV='prod' yarn build && node dist/app.js",
@@ -21,6 +19,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.9",
+    "@types/multer": "^1.4.5",
     "@types/mysql": "^2.15.17",
     "@types/node": "^14.14.17",
     "cross-env": "^7.0.3",
@@ -33,6 +32,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "multer": "^1.4.2",
     "mysql": "^2.18.1",
     "typeorm": "^0.2.29"
   }

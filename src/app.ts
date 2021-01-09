@@ -2,8 +2,9 @@ import express from 'express'
 import { urlencoded, json } from 'body-parser'
 
 import DB from '@/config/database'
-import Routes from '@/config/routes'
-import Errors from '@/controllers/ErrorsController'
+import ApiRoutes from '@/routers/api'
+import ViewsRoutes from '@/routers/views'
+import Errors from '@/middlewares/ErrorsHandler'
 
 // env
 const environment = process.env.NODE_ENV || 'dev'
@@ -17,7 +18,7 @@ app.use(Errors.serverError)
 DB.connect()
 
 // routes
-app.use('/', Routes)
+app.use('/api', ApiRoutes)
 
 // start
 app.listen(crossEnv.port)
