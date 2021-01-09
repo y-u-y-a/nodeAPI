@@ -2,11 +2,18 @@ import { RequestHandler } from 'express'
 import User from '@/entity/user'
 
 export class UsersController {
-  // get
+  /**
+   * Return all users
+   * @param - none
+   **/
   all: RequestHandler = async (req, res, next) => {
     const users = await User.find()
     res.json({ users: users })
   }
+  /**
+   * Return the user
+   * @param user_id
+   **/
   find: RequestHandler = async (req, res, next) => {
     const user = await User.findOne(req.params.id)
     res.json({ user: user })

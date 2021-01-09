@@ -4,7 +4,7 @@
 
     /* Basic Options */
     // "incremental": true,                   /* Enable incremental compilation */
-    "target": "es6",                          /* 書き出すバージョンを指定 */
+    "target": "es5",                          /* コンパイル後のバージョン */
     "module": "commonjs",                     /* 同じ？ */
     "moduleResolution": "node",
     "baseUrl": ".",                           /* Base directory */
