@@ -3,7 +3,6 @@ import { urlencoded, json } from 'body-parser'
 
 import DB from '@/config/database'
 import ApiRoutes from '@/routers/api'
-import ViewsRoutes from '@/routers/views'
 import Errors from '@/middlewares/ErrorsHandler'
 
 // env

@@ -3,7 +3,7 @@ import multer from 'multer'
 import Users from '@/controllers/UsersController'
 
 const router = Router()
-const upload = multer({ dest: '../storage' })
+const upload = multer({ dest: '../../public/storage' })
 
 // User
 router.get('/users/', Users.all)

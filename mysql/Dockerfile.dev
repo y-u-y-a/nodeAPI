@@ -1,6 +1,6 @@
 FROM mysql:5.7
 
-COPY ./build/mysql/my.cnf /etc/mysql/conf.d/my.cnf
+COPY ./mysql/my.cnf /etc/mysql/conf.d/my.cnf
 
 # install locales
 RUN apt-get clean \

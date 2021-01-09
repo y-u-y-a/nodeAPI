@@ -5,13 +5,13 @@
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV='dev' nodemon -L",
-    "prod": "cross-env NODE_ENV='prod' yarn build && node dist/app.js",
-    "build": "rm -rf dist && tsc",
-    "migrate:sync": "yarn build && typeorm schema:sync",
-    "migrate:drop": "yarn build && typeorm schema:drop",
-    "migrate:prod": "yarn build && typeorm migration:run",
-    "fmt": "prettier --write src/**/*.ts",
-    "ts-node": "ts-node"
+    "prod": "cross-env NODE_ENV='prod' yarn build && node public/dist/app.js",
+    "build": "rm -rf public/dist && tsc",
+    "migrate:up": "yarn typeorm schema:sync",
+    "migrate:down": "yarn typeorm schema:drop",
+    "migrate:create": "yarn typeorm migration:generate --name",
+    "typeorm": "ts-node ./node_modules/.bin/typeorm",
+    "fmt": "prettier --write src/**/*.ts"
   },
   "prettier": {
     "semi": false,

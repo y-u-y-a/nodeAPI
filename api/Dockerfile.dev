@@ -1,7 +1,7 @@
 FROM node:lts-alpine
 
-WORKDIR /code
-COPY ./code/package*.json ./
+WORKDIR /api
+COPY ./api/package*.json ./
 
 RUN npm install -g typescript ts-node typeorm
 RUN npm install
