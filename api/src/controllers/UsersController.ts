@@ -3,28 +3,36 @@ import User from '@/entity/user'
 
 export class UsersController {
   /**
-   * Return all users
    * @param - none
+   * @return All Users
    **/
   all: RequestHandler = async (req, res, next) => {
     const users = await User.find()
     res.json({ users: users })
   }
   /**
-   * Return the user
    * @param user_id
+   * @return The User
    **/
   find: RequestHandler = async (req, res, next) => {
     const user = await User.findOne(req.params.id)
     res.json({ user: user })
   }
 
-  // post
+  /**
+   * @param UserObject
+   * @return Created User
+   **/
   create: RequestHandler = async (req, res, next) => {
     const params = this.setParams(req.query)
-    let user: any = User.getRepository()
-    user = await user.save(params)
-    res.json({ user: user })
+    const user = User.create(params) // create instance
+    const errors = await user.validate() // validate
+    if (errors) {
+      res.json({ errors: errors })
+      return
+    }
+    const createdUser = await user.save() // insert
+    res.json({ user: createdUser })
   }
 
   // patch
