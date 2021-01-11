@@ -1,5 +1,4 @@
 import { RequestHandler } from 'express'
-import FilesHandler from '@/middlewares/FilesHandler'
 import User from '@/entity/user'
 
 export class UsersController {
@@ -22,12 +21,10 @@ export class UsersController {
 
   // post
   create: RequestHandler = async (req, res, next) => {
-    const file = FilesHandler.upload(req.file)
-    res.json({ query: req.query, file: file })
-    // const params = this.setParams(req.query)
-    // let user: any = User.getRepository()
-    // user = await user.save(params)
-    // res.json({ user: user })
+    const params = this.setParams(req.query)
+    let user: any = User.getRepository()
+    user = await user.save(params)
+    res.json({ user: user })
   }
 
   // patch
