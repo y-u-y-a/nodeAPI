@@ -1,9 +1,10 @@
 import { RequestHandler } from 'express'
+
+import { encrypt } from '@/middlewares/authentication'
 import User from '@/entity/user'
 
 export class UsersController {
   /**
-   * @param - none
    * @return All Users
    **/
   all: RequestHandler = async (req, res, next) => {
@@ -11,8 +12,8 @@ export class UsersController {
     res.json({ users: users })
   }
   /**
-   * @param user_id
-   * @return The User
+   * @param id user id
+   * @return   The User
    **/
   find: RequestHandler = async (req, res, next) => {
     const user = await User.findOne(req.params.id)
@@ -20,8 +21,8 @@ export class UsersController {
   }
 
   /**
-   * @param UserObject
-   * @return Created User
+   * @param User insert user params
+   * @return     Created User
    **/
   create: RequestHandler = async (req, res, next) => {
     const params = this.setParams(req.query)
@@ -31,6 +32,7 @@ export class UsersController {
       res.json({ errors: errors })
       return
     }
+    user.password = encrypt(params.password) // encrypt password
     const createdUser = await user.save() // insert
     res.json({ user: createdUser })
   }
